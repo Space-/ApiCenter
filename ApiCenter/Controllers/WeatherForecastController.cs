@@ -22,6 +22,10 @@ namespace ApiCenter.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Generate random weather forecast
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -33,6 +37,33 @@ namespace ApiCenter.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        /// <summary>
+        /// Generate random weather forecast , can set rangeEnd
+        /// </summary>
+        /// <param name="rangeEnd">Set end range of array</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /WeatherForecast
+        ///     {
+        ///        "rangeEnd": 1
+        ///     }
+        ///
+        /// </remarks>
+        [HttpPost]
+        public IEnumerable<WeatherForecast> Post(int rangeEnd = 3)
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, rangeEnd).Select(index => new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            })
+                .ToArray();
         }
     }
 }

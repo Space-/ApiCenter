@@ -11,3 +11,4 @@ https://docs.microsoft.com/zh-tw/aspnet/core/tutorials/getting-started-with-swas
 
 - **Swagger json file:** http://localhost:<port>/swagger/v1/swagger.json
 - **Swagger UI:** http://localhost:<port>/swagger
+- **wagger Editor:** https://swagger.io/tools/swagger-editor/

@@ -9,4 +9,16 @@
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\swagger\ui\custom.css" />
+    <None Include="wwwroot\swagger\ui\favicon-16x16.png" />
+    <None Include="wwwroot\swagger\ui\favicon-32x32.png" />
+    <None Include="wwwroot\swagger\ui\index.html" />
+    <None Include="wwwroot\swagger\ui\oauth2-redirect.html" />
+    <None Include="wwwroot\swagger\ui\swagger-ui-bundle.js" />
+    <None Include="wwwroot\swagger\ui\swagger-ui-standalone-preset.js" />
+    <None Include="wwwroot\swagger\ui\swagger-ui.css" />
+    <None Include="wwwroot\swagger\ui\swagger-ui.js" />
+  </ItemGroup>
 </Project>

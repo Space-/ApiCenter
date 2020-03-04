@@ -3,11 +3,14 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace ApiCenter.Controllers
 {
+    [Produces("application/json")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -26,6 +29,7 @@ namespace ApiCenter.Controllers
         /// Generate random weather forecast
         /// </summary>
         /// <returns></returns>
+        [Produces("application/json")]
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -64,6 +68,27 @@ namespace ApiCenter.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
                 .ToArray();
+        }
+
+        /// <summary>
+        /// Get current weather information
+        /// </summary>
+        /// <param name="wf">weather parameter</param>
+        /// <returns></returns>
+        /// <response code="200">Return a weather forecast</response>
+        /// <response code="400">If the value of WeatherForecast is null</response>
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public string GetWeatherInfo(WeatherForecast wf)
+        {
+            var weatherForecast = new WeatherForecast()
+            {
+                Date = DateTime.Now,
+                TemperatureC = wf.TemperatureC,
+                Summary = wf.Summary
+            };
+            return JsonSerializer.Serialize(weatherForecast);
         }
     }
 }

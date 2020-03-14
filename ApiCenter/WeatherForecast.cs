@@ -6,6 +6,10 @@ namespace ApiCenter
 {
     public class WeatherForecast
     {
+        /// <summary>
+        /// The date of the weather forecast
+        /// </summary>
+        /// <example>2020-1-1</example>
         [Required]
         public DateTime Date { get; set; }
 
